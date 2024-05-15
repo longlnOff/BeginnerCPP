@@ -12,3 +12,44 @@
 // just stream these bits one by one, even without knowing loops (see the next chapter). Perhaps
 // binary integer literals can be helpful—why else would we have mentioned them at the start of
 // this hint?
+
+#include <iostream>
+#include <format>
+#include <cmath>
+#include <bitset>
+
+int main(int argc, char* argv[])
+{
+    char letter {};
+    std::cout << "Enter a letter: ";
+    std::cin >> letter;
+    std::cout << "You entered " << letter << "." << std::endl;
+    bool is_vowel {false};
+    bool is_lowercase {false};
+    if (letter == 'a' || letter == 'e' || letter == 'i' || letter == 'o' || letter == 'u') {
+        is_vowel = true;
+    }
+    if (letter >= 'a' && letter <= 'z') {
+        is_lowercase = true;
+    }
+    auto num {static_cast<int>(letter)};
+    std::cout << "The letter is " << (is_vowel ? "a vowel" : "not a vowel") << " and " << (is_lowercase ? "lowercase" : "not lowercase") << "." << std::endl;
+    letter >= 'a' && letter <= 'z' ? std::cout << "The lowercase letter is: " << letter << std::endl : std::cout << std::endl;
+    std::cout << "Decimal value is: " << num << std::endl;
+
+
+    std::cout << std::format("{:b}", num) << std::endl;
+
+    std::cout   << "The binary code for '" << letter << "' is "
+                << ((letter & 0b10000000)? 1 : 0) 
+                << ((letter & 0b01000000)? 1 : 0)
+                << ((letter & 0b00100000)? 1 : 0) 
+                << ((letter & 0b00010000)? 1 : 0)
+                << ((letter & 0b00001000)? 1 : 0) 
+                << ((letter & 0b00000100)? 1 : 0)
+                << ((letter & 0b00000010)? 1 : 0) 
+                << ((letter & 0b00000001)? 1 : 0)
+                << std::endl;
+
+    return 0;
+}
