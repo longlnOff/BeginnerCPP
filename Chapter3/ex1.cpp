@@ -9,3 +9,33 @@
 // (assuming int values are 32 bits, which they usually are).
 // Note: Flipping all bits and adding one—ring any bells? Can you perhaps already deduce what
 // the decimal output will be before you run the program?
+
+
+#include <iostream>
+#include <format>
+#include <bitset>
+
+int main()
+{
+    int num_signed {};
+    std::cout << "Please enter signed integer number: ";
+    std::cin >> num_signed;
+    int invert_num_signed {~num_signed};
+    uint invert_num_unsigned {static_cast<uint>(invert_num_signed)};
+    
+    std::cout 
+    << std::bitset<sizeof(int)*8>(num_signed)
+    << std::format("{:2}", " ")
+    << std::bitset<sizeof(uint)*8>(invert_num_unsigned)
+    << std::format("{:2}", " ")
+    << std::bitset<sizeof(uint)*8>(invert_num_unsigned + 1) << std::endl;
+
+
+    std::cout 
+    << std::format("{:^32}", num_signed)
+    << std::format("{:^32}", invert_num_signed)
+    << std::format("{:^32}", invert_num_signed + 1)
+    << std::endl;
+
+    return 0;
+}
