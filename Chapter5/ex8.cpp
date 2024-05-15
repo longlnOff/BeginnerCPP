@@ -7,3 +7,20 @@
 // 93 elements. Store the first 93 numbers in the Fibonacci series in the array and then output
 // them one per line. Any idea why we’d be asking you to generate 93 Fibonacci numbers and
 // not, say, 100?
+
+#include <iostream>
+#include <array>
+
+int main()
+{
+    std::array<unsigned long long, 93> fibonacci {};
+    fibonacci[0] = 1;
+    fibonacci[1] = 1;
+    for (int i {2}; i < 93; ++i) {
+        fibonacci[i] = fibonacci[i - 1] + fibonacci[i - 2];
+    }
+    for (int i {}; i < 93; ++i) {
+        std::cout << fibonacci[i] << std::endl;
+    }
+    return 0;
+}
