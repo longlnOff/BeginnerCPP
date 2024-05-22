@@ -5,3 +5,7 @@
 // are to be replaced. For example, if the string is "Our house is at your disposal." and 
 // the word that is to be found is "our", then the resultant string should be as follows: 
 // "*** house is at your disposal." and not "*** house is at y*** disposal.".
+
+#include <iostream>
+#include <string>
+#include <format>
