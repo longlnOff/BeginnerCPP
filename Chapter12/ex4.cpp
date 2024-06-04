@@ -2,6 +2,7 @@
 // function as a friend of the Integer class. Afterward, ask yourself whether it was really 
 // necessary for this function to be a friend.
 
+/* We don't really necessary for compare function to be a friend. */
 #include <iostream>
 
 class Integer
@@ -17,7 +18,7 @@ public:
   Integer& subtract(const Integer& obj);
   Integer& multiply(const Integer& obj);
 
-  int compare(const Integer& obj) const;
+  friend int compare(const Integer& obj1, const Integer& obj2);
   
   void show() const;
 
@@ -56,11 +57,11 @@ Integer& Integer::multiply(const Integer& obj)
   return *this;
 }
 
-int Integer::compare(const Integer& obj) const
+int compare(const Integer& obj1, const Integer& obj2)
 {
-  if (m_value < obj.m_value)
+  if (obj1.m_value < obj2.m_value)
     return -1;
-  else if (m_value == obj.m_value)
+  else if (obj1.m_value == obj2.m_value)
     return 0;
   else
   	return 1;
@@ -72,18 +73,6 @@ void Integer::show() const
 }
 
 
-// Implementing add(), subtract() and multiply() 
-
-/***********************************************************
- By returning the dereferenced this pointer in the functions
- we can call the functions successively in a single statement.
- Note the parameter is a reference-to-const;
- const because the argument is not changed by the function
- and a reference to avoid the overhead of copying objects.
- The only other requirement for achieving the calculation
- in a single statement is figuring out how to sequence to
- operations to allow this.
- ***********************************************************/
 
 int main()
 {
@@ -93,7 +82,7 @@ int main()
   const Integer six{6};
   const Integer eight{8};
 
-  std::cout << four.compare(six) << std::endl;
+  std::cout << compare(six, four) << std::endl;
 
   return 0;
 }
